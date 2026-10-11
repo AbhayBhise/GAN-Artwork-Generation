@@ -49,7 +49,26 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
           <span style={{ color: '#cbd5e1' }}>•</span>
           <span>22,632 WikiArt Works</span>
           <span style={{ color: '#cbd5e1' }}>•</span>
-          <span>27 Historical Movements</span>
+          <a
+            href="https://huggingface.co/CBABHI/gan-artwork-generation"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
+              padding: '2px 8px',
+              backgroundColor: '#fef3c7',
+              color: '#92400e',
+              border: '1px solid #fde68a',
+              borderRadius: '9999px',
+              fontWeight: 600,
+              textDecoration: 'none',
+              fontSize: '11px'
+            }}
+          >
+            🤗 Hugging Face Models
+          </a>
         </div>
       </div>
 
