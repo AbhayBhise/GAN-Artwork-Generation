@@ -193,7 +193,8 @@ export const ModelComparisonTable: React.FC<ModelComparisonProps> = ({ onSelectI
                     overflow: 'hidden',
                     border: '1px solid #e2e8f0',
                     cursor: 'pointer',
-                    backgroundColor: '#0f172a'
+                    backgroundColor: '#0f172a',
+                    minHeight: '220px'
                   }}
                   onClick={() =>
                     onSelectImage(
@@ -208,6 +209,7 @@ export const ModelComparisonTable: React.FC<ModelComparisonProps> = ({ onSelectI
                   <img
                     src={model.sampleImages[0].url}
                     alt={model.sampleImages[0].title}
+                    loading="lazy"
                     style={{
                       width: '100%',
                       height: '220px',
