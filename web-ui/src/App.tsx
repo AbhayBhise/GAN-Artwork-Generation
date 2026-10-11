@@ -145,7 +145,7 @@ export function App() {
               Ars Adversaria | Deep Generative Artwork Synthesis
             </h4>
             <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>
-              Assignment Replication & Comparative Investigation: DCGAN vs Conditional GAN (cGAN) vs Creative Adversarial Networks (CAN).
+              Implementation & Comparative Investigation: DCGAN vs Conditional GAN (cGAN) vs Creative Adversarial Networks (CAN).
             </p>
           </div>
 

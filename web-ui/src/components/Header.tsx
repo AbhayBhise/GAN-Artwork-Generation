@@ -35,10 +35,10 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <span style={{ fontWeight: 600, color: '#334155' }}>
-            Academic Research Project: Computational Creativity & Deep Generative Art
+            Academic Research Project: Generative Adversarial Networks for Artwork Synthesis
           </span>
           <span style={{ color: '#cbd5e1' }}>|</span>
-          <span>UC Santa Cruz & UC San Diego Report Replication</span>
+          <span>Implementation & Comparative Study: DCGAN vs cGAN</span>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
