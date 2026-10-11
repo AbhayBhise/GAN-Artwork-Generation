@@ -1,9 +1,9 @@
 import React from 'react'
-import { Sparkles, Layers, Activity, Palette, BookOpen, GitCompare } from 'lucide-react'
+import { Sparkles, Activity, Palette, BookOpen, GitCompare } from 'lucide-react'
 
 interface HeaderProps {
-  activeTab: 'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about'
-  setActiveTab: (tab: 'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about') => void
+  activeTab: 'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about' | 'dcgan' | 'cgan' | 'can'
+  setActiveTab: (tab: 'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about' | 'dcgan' | 'cgan' | 'can') => void
 }
 
 export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
@@ -124,20 +124,21 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
           </p>
         </div>
 
-        {/* Tab Navigation */}
+        {/* Tab Navigation with Separate Dedicated Model Pages */}
         <nav
           style={{
             display: 'flex',
             backgroundColor: '#f1f5f9',
             padding: '4px',
             borderRadius: '12px',
-            gap: '4px'
+            gap: '4px',
+            flexWrap: 'wrap'
           }}
         >
           <button
             onClick={() => setActiveTab('comparison')}
             style={{
-              padding: '8px 16px',
+              padding: '8px 14px',
               fontSize: '13px',
               fontWeight: 600,
               borderRadius: '8px',
@@ -150,13 +151,74 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             }}
           >
             <GitCompare size={15} color={activeTab === 'comparison' ? '#4f46e5' : '#64748b'} />
-            Model Comparison
+            Comparator
+          </button>
+
+          {/* Model Specific Pages */}
+          <button
+            onClick={() => setActiveTab('dcgan')}
+            style={{
+              padding: '8px 14px',
+              fontSize: '13px',
+              fontWeight: 700,
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              backgroundColor: activeTab === 'dcgan' ? '#eef2ff' : 'transparent',
+              color: activeTab === 'dcgan' ? '#4f46e5' : '#64748b',
+              boxShadow: activeTab === 'dcgan' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+              border: activeTab === 'dcgan' ? '1px solid #c7d2fe' : 'none'
+            }}
+          >
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#6366f1' }} />
+            DCGAN Page
+          </button>
+
+          <button
+            onClick={() => setActiveTab('cgan')}
+            style={{
+              padding: '8px 14px',
+              fontSize: '13px',
+              fontWeight: 700,
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              backgroundColor: activeTab === 'cgan' ? '#ccfbf1' : 'transparent',
+              color: activeTab === 'cgan' ? '#0d9488' : '#64748b',
+              boxShadow: activeTab === 'cgan' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+              border: activeTab === 'cgan' ? '1px solid #99f6e4' : 'none'
+            }}
+          >
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#0d9488' }} />
+            cGAN Page
+          </button>
+
+          <button
+            onClick={() => setActiveTab('can')}
+            style={{
+              padding: '8px 14px',
+              fontSize: '13px',
+              fontWeight: 700,
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              backgroundColor: activeTab === 'can' ? '#fef3c7' : 'transparent',
+              color: activeTab === 'can' ? '#d97706' : '#64748b',
+              boxShadow: activeTab === 'can' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+              border: activeTab === 'can' ? '1px solid #fde68a' : 'none'
+            }}
+          >
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+            CAN Page
           </button>
 
           <button
             onClick={() => setActiveTab('gallery')}
             style={{
-              padding: '8px 16px',
+              padding: '8px 14px',
               fontSize: '13px',
               fontWeight: 600,
               borderRadius: '8px',
@@ -169,32 +231,13 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             }}
           >
             <Sparkles size={15} color={activeTab === 'gallery' ? '#4f46e5' : '#64748b'} />
-            Output Gallery & Evolution
-          </button>
-
-          <button
-            onClick={() => setActiveTab('architecture')}
-            style={{
-              padding: '8px 16px',
-              fontSize: '13px',
-              fontWeight: 600,
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              backgroundColor: activeTab === 'architecture' ? '#ffffff' : 'transparent',
-              color: activeTab === 'architecture' ? '#0f172a' : '#64748b',
-              boxShadow: activeTab === 'architecture' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'
-            }}
-          >
-            <Layers size={15} color={activeTab === 'architecture' ? '#4f46e5' : '#64748b'} />
-            Architectures & Math
+            Evolution Scrubber
           </button>
 
           <button
             onClick={() => setActiveTab('telemetry')}
             style={{
-              padding: '8px 16px',
+              padding: '8px 14px',
               fontSize: '13px',
               fontWeight: 600,
               borderRadius: '8px',
@@ -207,13 +250,13 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             }}
           >
             <Activity size={15} color={activeTab === 'telemetry' ? '#10b981' : '#64748b'} />
-            Live Telemetry
+            Telemetry
           </button>
 
           <button
             onClick={() => setActiveTab('about')}
             style={{
-              padding: '8px 16px',
+              padding: '8px 14px',
               fontSize: '13px',
               fontWeight: 600,
               borderRadius: '8px',
@@ -226,7 +269,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             }}
           >
             <BookOpen size={15} color={activeTab === 'about' ? '#4f46e5' : '#64748b'} />
-            Project Approach
+            Approach
           </button>
         </nav>
       </div>

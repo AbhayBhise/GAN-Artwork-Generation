@@ -7,10 +7,11 @@ import { TrainingLossChart } from './components/TrainingLossChart'
 import { TelemetryPanel } from './components/TelemetryPanel'
 import { ProjectApproach } from './components/ProjectApproach'
 import { ImageModal } from './components/ImageModal'
+import { ModelDetailPage } from './components/ModelDetailPage'
 import { ExternalLink } from 'lucide-react'
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about'>('comparison')
+  const [activeTab, setActiveTab] = useState<'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about' | 'dcgan' | 'cgan' | 'can'>('comparison')
   const [modalData, setModalData] = useState<{
     isOpen: boolean
     src: string
@@ -61,6 +62,33 @@ export function App() {
             <ModelComparisonTable onSelectImage={handleOpenImage} />
             <TrainingLossChart />
           </div>
+        )}
+
+        {/* Dedicated DCGAN Page */}
+        {activeTab === 'dcgan' && (
+          <ModelDetailPage
+            modelId="dcgan"
+            onBack={() => setActiveTab('comparison')}
+            onSelectImage={handleOpenImage}
+          />
+        )}
+
+        {/* Dedicated cGAN Page */}
+        {activeTab === 'cgan' && (
+          <ModelDetailPage
+            modelId="cgan"
+            onBack={() => setActiveTab('comparison')}
+            onSelectImage={handleOpenImage}
+          />
+        )}
+
+        {/* Dedicated CAN Page */}
+        {activeTab === 'can' && (
+          <ModelDetailPage
+            modelId="can"
+            onBack={() => setActiveTab('comparison')}
+            onSelectImage={handleOpenImage}
+          />
         )}
 
         {activeTab === 'gallery' && (
