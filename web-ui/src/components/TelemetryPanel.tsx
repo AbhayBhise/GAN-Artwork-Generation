@@ -115,16 +115,16 @@ export const TelemetryPanel: React.FC = () => {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#64748b', fontSize: '12px', fontWeight: 600 }}>
               <CheckCircle2 size={16} color="#10b981" /> Training Progress
             </div>
-            <span style={{ fontSize: '12px', fontWeight: 800, color: '#10b981' }}>85.3%</span>
+            <span style={{ fontSize: '12px', fontWeight: 800, color: '#10b981' }}>100% Complete</span>
           </div>
           <div style={{ fontSize: '16px', fontWeight: 800, color: '#0f172a', marginTop: '4px' }}>
-            Epoch 64 of 75
+            Epoch 75 of 75 (Fully Converged)
           </div>
           <div style={{ width: '100%', height: '6px', backgroundColor: '#e2e8f0', borderRadius: '3px', marginTop: '8px', overflow: 'hidden' }}>
-            <div style={{ width: '85.3%', height: '100%', backgroundColor: '#10b981', borderRadius: '3px' }} />
+            <div style={{ width: '100%', height: '100%', backgroundColor: '#10b981', borderRadius: '3px' }} />
           </div>
           <div style={{ fontSize: '11px', color: '#64748b', marginTop: '6px' }}>
-            Active Checkpoint: 56.2 MB <code>checkpoint_latest.pth</code>
+            Final Checkpoint Saved: 56.2 MB <code>checkpoint_latest.pth</code>
           </div>
         </div>
       </div>
