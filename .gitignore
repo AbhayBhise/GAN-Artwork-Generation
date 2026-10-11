@@ -1,0 +1,35 @@
+# Virtual Environments & Caches
+GAN-Artwork-Generation/env/
+GAN-Artwork-Generation/venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Datasets
+GAN-Artwork-Generation/data/
+GAN-Artwork-Generation/images/
+GAN-Artwork-Generation/images*
+GAN-Artwork-Generation/.hf_cache/
+GAN-Artwork-Generation/hf_cache/
+
+# Large Model Weights & Checkpoints (>50MB)
+*.pth
+*.pt
+GAN-Artwork-Generation/output/*.pth
+GAN-Artwork-Generation/*.pth
+
+# Web UI Dependencies & Builds
+web-ui/node_modules/
+web-ui/dist/
+web-ui/dist-ssr/
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# System & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
