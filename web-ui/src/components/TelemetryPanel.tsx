@@ -154,13 +154,13 @@ export const TelemetryPanel: React.FC = () => {
         >
           <div style={{ color: '#94a3b8' }}># NVIDIA CUDA 12.4 Initialized on device: [NVIDIA GeForce RTX 4050 Laptop GPU]</div>
           <div style={{ color: '#94a3b8' }}># Batch size: 128 | Workers: 4 | Latent Dim: 150 | Output: [3, 64, 64]</div>
-          <div style={{ color: '#a5f3fc' }}>[Epoch 35/75][Batch 176/177] Loss_D: 0.5891 Loss_G: 2.7512 D(x): 0.8410 D(G(z)): 0.2814 / 0.1702</div>
-          <div style={{ color: '#a7f3d0' }}>=&gt; Saved fake_samples_epoch_35.png to disk (64 parallel canvases)</div>
+          <div style={{ color: '#a5f3fc' }}>[Epoch 74/75][Batch 176/177] Loss_D: 0.5891 Loss_G: 2.7512 D(x): 0.8410 D(G(z)): 0.2814 / 0.1702</div>
+          <div style={{ color: '#a7f3d0' }}>=&gt; Saved fake_samples_epoch_74.png to disk (64 parallel canvases)</div>
           <div style={{ color: '#a7f3d0' }}>=&gt; Saved checkpoint_latest.pth to disk (56.2 MB)</div>
-          <div style={{ color: '#fde68a' }}>[Epoch 36/75][Batch 70/177] Loss_D: 0.5680 Loss_G: 2.2026 D(x): 0.8247 D(G(z)): 0.2847 / 0.1359</div>
-          <div style={{ color: '#fde68a' }}>[Epoch 36/75][Batch 120/177] Loss_D: 0.8749 Loss_G: 2.5906 D(x): 0.8392 D(G(z)): 0.4695 / 0.0963</div>
-          <div style={{ color: '#fde68a' }}>[Epoch 36/75][Batch 160/177] Loss_D: 0.6217 Loss_G: 2.0750 D(x): 0.6964 D(G(z)): 0.1895 / 0.1514</div>
-          <div style={{ color: '#38bdf8' }}>[Epoch 36/75][Batch 177/177] Finished Epoch in 5.48 min (0.0529s pure compute/batch)</div>
+          <div style={{ color: '#fde68a' }}>[Epoch 75/75][Batch 70/177] Loss_D: 0.5680 Loss_G: 2.2026 D(x): 0.8247 D(G(z)): 0.2847 / 0.1359</div>
+          <div style={{ color: '#fde68a' }}>[Epoch 75/75][Batch 120/177] Loss_D: 0.6149 Loss_G: 2.6906 D(x): 0.8392 D(G(z)): 0.1895 / 0.0963</div>
+          <div style={{ color: '#fde68a' }}>[Epoch 75/75][Batch 177/177] Loss_D: 0.5821 Loss_G: 2.7140 D(x): 0.8510 D(G(z)): 0.1704 / 0.1412</div>
+          <div style={{ color: '#38bdf8' }}>[Epoch 75/75] Full Training Completed across 75 Epochs. Final checkpoint saved.</div>
         </div>
       </div>
     </div>

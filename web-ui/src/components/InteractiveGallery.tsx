@@ -85,12 +85,12 @@ const KEY_DESCRIPTIONS: Record<number, { title: string; desc: string }> = {
     desc: 'Generator captures diverse artistic textures from Renaissance oil glaze to Post-Impressionist palettes with high fidelity.'
   },
   74: {
-    title: 'Epoch 74: Full 100% Training Completion State',
+    title: 'Epoch 75: Full 100% Training Completion State',
     desc: 'Final converged equilibrium from full 75-epoch NVIDIA RTX 4050 GPU run. State-of-the-art synthetic artwork manifold.'
   }
 }
 
-// Build array of all 75 epochs (0 through 74)
+// Build array of all 75 epochs (0 through 74 index)
 const TOTAL_EPOCHS_AVAILABLE = 75
 const ALL_EPOCH_DATA: EpochPoint[] = Array.from({ length: TOTAL_EPOCHS_AVAILABLE }, (_, ep) => {
   // Compute realistic loss progression matching our empirical curve
@@ -100,7 +100,7 @@ const ALL_EPOCH_DATA: EpochPoint[] = Array.from({ length: TOTAL_EPOCHS_AVAILABLE
   const d_acc = Math.min(96, Math.round(52 + 38 * Math.pow(progress, 0.4)))
   const g_acc = Math.min(92, Math.round(48 + 36 * Math.pow(progress, 0.5)))
 
-  const fallbackTitle = `Epoch ${ep}: Manifold Synthesis Progress (${Math.round((ep / 74) * 100)}%)`
+  const fallbackTitle = `Epoch ${ep + 1}: Manifold Synthesis Progress (${Math.round(((ep + 1) / 75) * 100)}%)`
   const fallbackDesc = `Continuous adversarial training step. Generator produces 64 parallel 64×64 RGB canvases, iteratively updating batch norm statistics and transposed convolution kernels.`
 
   return {
@@ -126,7 +126,7 @@ export const InteractiveGallery: React.FC<InteractiveGalleryProps> = ({ onSelect
 
   // Current active data point is guaranteed in 100% sync
   const activeSlide = ALL_EPOCH_DATA[currentEpoch] || ALL_EPOCH_DATA[ALL_EPOCH_DATA.length - 1]
-  const trainingCompletionPercent = Math.round((currentEpoch / 75) * 100)
+  const trainingCompletionPercent = Math.round(((currentEpoch + 1) / 75) * 100)
 
   // Auto-play evolution animation through epochs
   useEffect(() => {
@@ -369,7 +369,7 @@ export const InteractiveGallery: React.FC<InteractiveGalleryProps> = ({ onSelect
                   }}
                 >
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#6366f1' }} />
-                  Epoch {activeSlide.epoch} / 75
+                  Epoch {activeSlide.epoch + 1} / 75
                 </div>
 
                 <div
@@ -442,7 +442,7 @@ export const InteractiveGallery: React.FC<InteractiveGalleryProps> = ({ onSelect
                         border: '1px solid #c7d2fe'
                       }}
                     >
-                      Epoch {activeSlide.epoch} of 75
+                      Epoch {activeSlide.epoch + 1} of 75
                     </span>
                     <span style={{ fontSize: '12px', color: '#64748b' }}>
                       Live GPU Checkpoint
@@ -491,7 +491,7 @@ export const InteractiveGallery: React.FC<InteractiveGalleryProps> = ({ onSelect
                 <div style={{ marginTop: '20px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>
                     <span>Training Target Progress</span>
-                    <span style={{ color: '#4f46e5' }}>{trainingCompletionPercent}% (Epoch {activeSlide.epoch} / 75)</span>
+                    <span style={{ color: '#4f46e5' }}>{trainingCompletionPercent}% (Epoch {activeSlide.epoch + 1} / 75)</span>
                   </div>
                   <div
                     style={{
@@ -620,7 +620,7 @@ export const InteractiveGallery: React.FC<InteractiveGalleryProps> = ({ onSelect
                         cursor: 'pointer'
                       }}
                     >
-                      Latest Epoch ({TOTAL_EPOCHS_AVAILABLE - 1})
+                      Latest Epoch (75)
                     </button>
                   </div>
 
@@ -640,7 +640,7 @@ export const InteractiveGallery: React.FC<InteractiveGalleryProps> = ({ onSelect
                       <ChevronLeft size={16} />
                     </button>
                     <span style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a', padding: '0 6px' }}>
-                      Epoch {currentEpoch} / 64
+                      Epoch {currentEpoch + 1} / 75
                     </span>
                     <button
                       onClick={() => handleEpochChange(Math.min(TOTAL_EPOCHS_AVAILABLE - 1, currentEpoch + 1))}
@@ -680,8 +680,8 @@ export const InteractiveGallery: React.FC<InteractiveGalleryProps> = ({ onSelect
                   />
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
                     <span>Epoch 0 (Initial Noise)</span>
-                    <span>Epoch 30 (Feature Synthesis)</span>
-                    <span>Epoch 64 (Latest Convergence)</span>
+                    <span>Epoch 35 (Feature Emergence)</span>
+                    <span>Epoch 75 (Final Convergence)</span>
                   </div>
                 </div>
 
