@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Header } from './components/Header'
 import { ModelComparisonTable } from './components/ModelComparisonTable'
+import { SideBySideComparisonView } from './components/SideBySideComparisonView'
 import { InteractiveGallery } from './components/InteractiveGallery'
 import { ArchitectureExplainer } from './components/ArchitectureExplainer'
 import { TrainingLossChart } from './components/TrainingLossChart'
@@ -11,7 +12,7 @@ import { ModelDetailPage } from './components/ModelDetailPage'
 import { ExternalLink } from 'lucide-react'
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about' | 'dcgan' | 'cgan' | 'can'>('comparison')
+  const [activeTab, setActiveTab] = useState<'sidebyside' | 'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about' | 'dcgan' | 'cgan' | 'can'>('sidebyside')
   const [modalData, setModalData] = useState<{
     isOpen: boolean
     src: string
@@ -57,6 +58,13 @@ export function App() {
       {/* Main Container */}
       <main style={{ flex: 1, maxWidth: '1440px', width: '100%', margin: '0 auto', padding: '32px' }}>
         {/* Dynamic Section Rendering */}
+        {activeTab === 'sidebyside' && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            <SideBySideComparisonView onSelectImage={handleOpenImage} />
+            <TrainingLossChart />
+          </div>
+        )}
+
         {activeTab === 'comparison' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             <ModelComparisonTable onSelectImage={handleOpenImage} />

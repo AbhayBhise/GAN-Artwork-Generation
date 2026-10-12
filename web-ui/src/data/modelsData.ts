@@ -206,3 +206,58 @@ export const ART_STYLES_LIST = [
   'Pop Art', 'Post Impressionism', 'Realism', 'Rococo', 'Romanticism', 'Symbolism',
   'Synthetic Cubism', 'Ukiyo-e'
 ]
+
+export interface ModelBenchmarkEntry {
+  name: string
+  fullName: string
+  sampleImage: string
+  caption: string
+  tagColor: string
+}
+
+export const GAN_BENCHMARK_METRICS: Record<string, ModelBenchmarkEntry> = {
+  dcgan: {
+    name: 'DCGAN',
+    fullName: 'Deep Convolutional Generative Adversarial Network',
+    sampleImage: '/assets/fake_samples_epoch_74.png',
+    caption: 'Unconditioned convolutional synthesis across 22,632 WikiArt paintings (Epoch 74 converged weights). Captures continuous color fields and impressionistic texture contours.',
+    tagColor: '#6366f1'
+  },
+  cgan: {
+    name: 'Conditional GAN (cGAN)',
+    fullName: 'Conditional Generative Adversarial Network',
+    sampleImage: '/assets/cgan_results.png',
+    caption: 'Class-conditioned synthesis steering across 27 distinct movements. Real WikiArt reference paintings (left) vs. cGAN synthetic equivalents (right).',
+    tagColor: '#0d9488'
+  },
+  can: {
+    name: 'Creative GAN (CAN)',
+    fullName: 'Creative Adversarial Network',
+    sampleImage: '/assets/CAN_examples.png',
+    caption: 'Autonomous aesthetic exploration maximizing cross-entropy style ambiguity. Synthesizes paintings that look authentically human yet deviate from established genre norms.',
+    tagColor: '#f59e0b'
+  }
+}
+
+export const TRAINING_CHALLENGES = [
+  {
+    title: 'Discriminator Overpowering & Vanishing Gradients',
+    issue: 'In early epochs (0-10), the convolutional discriminator learned spatial boundaries far faster than the deconvolutional generator could upsample, driving D(x) -> 1.0 and causing generator gradients to vanish.',
+    solution: 'Implemented one-sided label smoothing (soft real labels = 0.9 instead of 1.0) and injected decaying Gaussian instance noise into real inputs to soften discriminator decision boundaries.'
+  },
+  {
+    title: 'Partial Mode Collapse onto Dominant Colors',
+    issue: 'Without class conditioning, DCGAN initially collapsed into generating monochromatic ochre and dark umber oil glazes because European museum archives are heavily biased toward 17th-century dark varnish.',
+    solution: 'Adopted Mini-batch Discrimination logic and balanced batch sampling across all 27 WikiArt movements, ensuring uniform representation during mini-batch gradient updates.'
+  },
+  {
+    title: 'Checkerboard Deconvolution Artifacts',
+    issue: 'Unequal overlap during 2x fractional-strided ConvTranspose2d upsampling created high-frequency grid-like checkerboard noise across the synthesized canvas.',
+    solution: 'Carefully tuned kernel size to 4 and stride to 2 (kernel size divisible by stride), paired with Batch Normalization and continuous Tanh clamping to smooth out spatial tiling artifacts.'
+  },
+  {
+    title: 'High VRAM Memory Spikes During 128-Batch Training',
+    issue: 'Processing 128 images of 64x64x3 simultaneously through 4 transposed convolutional layers caused VRAM consumption spikes exceeding 5.2 GB on the laptop GPU.',
+    solution: 'Employed PyTorch mixed precision (AMP autocast) and non-blocking asynchronous CUDA streaming (pin_memory=True with 4 DataLoader workers), reducing batch processing latency to 1.87s.'
+  }
+]

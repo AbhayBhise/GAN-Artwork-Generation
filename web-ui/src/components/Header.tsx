@@ -2,8 +2,8 @@ import React from 'react'
 import { Sparkles, Activity, Palette, BookOpen, GitCompare } from 'lucide-react'
 
 interface HeaderProps {
-  activeTab: 'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about' | 'dcgan' | 'cgan' | 'can'
-  setActiveTab: (tab: 'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about' | 'dcgan' | 'cgan' | 'can') => void
+  activeTab: 'sidebyside' | 'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about' | 'dcgan' | 'cgan' | 'can'
+  setActiveTab: (tab: 'sidebyside' | 'comparison' | 'gallery' | 'architecture' | 'telemetry' | 'about' | 'dcgan' | 'cgan' | 'can') => void
 }
 
 export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
@@ -155,6 +155,25 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
           }}
         >
           <button
+            onClick={() => setActiveTab('sidebyside')}
+            style={{
+              padding: '8px 14px',
+              fontSize: '13px',
+              fontWeight: 700,
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              backgroundColor: activeTab === 'sidebyside' ? '#ffffff' : 'transparent',
+              color: activeTab === 'sidebyside' ? '#4f46e5' : '#64748b',
+              boxShadow: activeTab === 'sidebyside' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'
+            }}
+          >
+            <GitCompare size={15} color={activeTab === 'sidebyside' ? '#4f46e5' : '#64748b'} />
+            Side-by-Side Dual View
+          </button>
+
+          <button
             onClick={() => setActiveTab('comparison')}
             style={{
               padding: '8px 14px',
@@ -169,8 +188,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               boxShadow: activeTab === 'comparison' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'
             }}
           >
-            <GitCompare size={15} color={activeTab === 'comparison' ? '#4f46e5' : '#64748b'} />
-            Comparator
+            All Models Spec Matrix
           </button>
 
           {/* Model Specific Pages */}
