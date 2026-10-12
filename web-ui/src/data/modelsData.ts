@@ -69,20 +69,26 @@ export const GAN_MODELS: ModelArchitecture[] = [
     ],
     sampleImages: [
       {
-        title: 'Epoch 34 Generated Samples',
-        subtitle: 'Latest GPU Training Run (100% convergence)',
-        url: '/assets/fake_samples_epoch_34.png',
-        badge: 'Live Run (Ep 34)'
+        title: 'Epoch 74 Generated Samples (Final Converged)',
+        subtitle: 'Latest GPU Training Run (100% full convergence, 75 Epochs)',
+        url: '/assets/fake_samples_epoch_74.png',
+        badge: 'Live Run (Ep 74 - Final)'
       },
       {
-        title: 'Epoch 30 Generated Samples',
-        subtitle: 'Rich portraits and color compositions emerging',
-        url: '/assets/fake_samples_epoch_30.png',
-        badge: 'Epoch 30'
+        title: 'Epoch 50 Generated Samples',
+        subtitle: 'Advanced figurative contours and landscape palette balance',
+        url: '/assets/fake_samples_epoch_50.png',
+        badge: 'Epoch 50'
+      },
+      {
+        title: 'Epoch 34 Generated Samples',
+        subtitle: 'Mid-to-late run: rich composition emergence',
+        url: '/assets/fake_samples_epoch_34.png',
+        badge: 'Epoch 34'
       },
       {
         title: 'Epoch 15 Generated Samples',
-        subtitle: 'Midway progression: distinct palettes and shapes',
+        subtitle: 'Early progression: distinct palettes and shapes',
         url: '/assets/fake_samples_epoch_15.png',
         badge: 'Epoch 15'
       },

@@ -5,6 +5,7 @@ import {
   ArrowLeft, ExternalLink, Sparkles, CheckCircle2, 
   Sigma, ShieldAlert, Maximize2
 } from 'lucide-react'
+import { TrainingLossChart } from './TrainingLossChart'
 
 interface ModelDetailPageProps {
   modelId: string
@@ -510,58 +511,66 @@ export const ModelDetailPage: React.FC<ModelDetailPageProps> = ({ modelId, onBac
 
       {/* Tab 4: Convergence Curves & Graphs */}
       {activeTab === 'graphs' && (
-        <div
-          style={{
-            backgroundColor: '#ffffff',
-            borderRadius: '20px',
-            border: '1px solid #e2e8f0',
-            padding: '28px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.03)'
-          }}
-        >
-          <div style={{ marginBottom: '20px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
-              Empirical Training Curves & Convergence for {model.name}
-            </h3>
-            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '2px' }}>
-              Observed Nash equilibrium, loss trajectories, and discriminator accuracy across epochs.
-            </p>
-          </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {/* Interactive Chart Component for this specific model */}
+          <TrainingLossChart
+            modelId={model.id as 'dcgan' | 'cgan' | 'can'}
+            showModelSelector={false}
+          />
 
           <div
             style={{
-              padding: '20px',
-              backgroundColor: '#f8fafc',
-              borderRadius: '16px',
-              border: '1px solid #e2e8f0'
+              backgroundColor: '#ffffff',
+              borderRadius: '20px',
+              border: '1px solid #e2e8f0',
+              padding: '28px',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.03)'
             }}
           >
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '20px' }}>
-              <div style={{ padding: '16px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>D-Loss Range</span>
-                <p style={{ fontSize: '18px', fontWeight: 800, color: '#0d9488', marginTop: '2px' }}>{model.metrics.lossD}</p>
-              </div>
-              <div style={{ padding: '16px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>G-Loss Range</span>
-                <p style={{ fontSize: '18px', fontWeight: 800, color: '#6366f1', marginTop: '2px' }}>{model.metrics.lossG}</p>
-              </div>
-              <div style={{ padding: '16px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>Epoch Convergence</span>
-                <p style={{ fontSize: '18px', fontWeight: 800, color: '#0f172a', marginTop: '2px' }}>{model.metrics.epochConvergence}</p>
-              </div>
-              <div style={{ padding: '16px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>Stability Rating</span>
-                <p style={{ fontSize: '18px', fontWeight: 800, color: '#10b981', marginTop: '2px' }}>{model.metrics.trainingStability}</p>
-              </div>
+            <div style={{ marginBottom: '20px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
+                Convergence Diagnostics & Parameter Summary ({model.name})
+              </h3>
+              <p style={{ fontSize: '13px', color: '#64748b', marginTop: '2px' }}>
+                Empirically validated metric intervals recorded during training runs.
+              </p>
             </div>
 
-            <div style={{ padding: '16px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-              <h4 style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a', marginBottom: '8px' }}>
-                Convergence Dynamics Analysis
-              </h4>
-              <p style={{ fontSize: '13px', color: '#475569', lineHeight: 1.6 }}>
-                During training on WikiArt (batch size {model.batchSize}), the generator and discriminator converged at approximately {model.metrics.epochConvergence}. The discriminator error maintained an optimal non-saturating gradient without mode collapse, allowing the generator to capture high-frequency brushstroke impasto across all 27 art historical movements.
-              </p>
+            <div
+              style={{
+                padding: '20px',
+                backgroundColor: '#f8fafc',
+                borderRadius: '16px',
+                border: '1px solid #e2e8f0'
+              }}
+            >
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '20px' }}>
+                <div style={{ padding: '16px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                  <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>D-Loss Range</span>
+                  <p style={{ fontSize: '18px', fontWeight: 800, color: '#0d9488', marginTop: '2px' }}>{model.metrics.lossD}</p>
+                </div>
+                <div style={{ padding: '16px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                  <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>G-Loss Range</span>
+                  <p style={{ fontSize: '18px', fontWeight: 800, color: '#6366f1', marginTop: '2px' }}>{model.metrics.lossG}</p>
+                </div>
+                <div style={{ padding: '16px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                  <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>Epoch Convergence</span>
+                  <p style={{ fontSize: '18px', fontWeight: 800, color: '#0f172a', marginTop: '2px' }}>{model.metrics.epochConvergence}</p>
+                </div>
+                <div style={{ padding: '16px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                  <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>Stability Rating</span>
+                  <p style={{ fontSize: '18px', fontWeight: 800, color: '#10b981', marginTop: '2px' }}>{model.metrics.trainingStability}</p>
+                </div>
+              </div>
+
+              <div style={{ padding: '16px', backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <h4 style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a', marginBottom: '8px' }}>
+                  Convergence Dynamics Analysis
+                </h4>
+                <p style={{ fontSize: '13px', color: '#475569', lineHeight: 1.6 }}>
+                  During training on WikiArt (batch size {model.batchSize}), the generator and discriminator converged at approximately {model.metrics.epochConvergence}. The discriminator error maintained an optimal non-saturating gradient without mode collapse, allowing the generator to capture high-frequency brushstroke impasto across all 27 art historical movements.
+                </p>
+              </div>
             </div>
           </div>
         </div>
